@@ -1,0 +1,56 @@
+inventory = {}
+# Function to add items to inventory
+def add_item(item, quantity):
+    if item in inventory:
+        inventory[item] += quantity
+    else:
+        inventory[item] = quantity
+    print(f"{quantity} units of {item} added to inventory.\n")
+# Function to remove items from inventory
+def remove_item(item, quantity):
+    if item in inventory:
+        if inventory[item] >= quantity:
+         inventory[item] -= quantity
+        print(f"{quantity} units of {item} removed from inventory.\n")
+ # If no items are left, remove the item from
+        if inventory[item] == 0:
+                del inventory[item]
+        else:
+            print(f"Not enough {item} in inventory to remove.\n")
+    else:
+     print(f"{item} not found in inventory.\n")
+    # Function to view the current inventory
+def view_inventory():
+    if not inventory:
+        print("Inventory is empty.\n")
+    else:
+        print("Current Inventory:")
+    for item, quantity in inventory.items():
+        print(f"{item}: {quantity} units")
+    print()
+# Main function to run the program in real-time
+def main():
+    while True:
+        print("Store Inventory Management")
+        print("1. Add Item")
+        print("2. Remove Item")
+        print("3. View Inventory")
+        print("4. Quit")
+        choice = input("Enter your choice (1-4): ")
+        if choice == "1":
+            item = input("Enter the item name: ")
+            quantity = int(input(f"Enter the quantity of{item}: "))
+            add_item(item, quantity)
+        elif choice == "2":
+            item = input("Enter the item name to remove: ")
+            quantity = int(input(f"Enter the quantity of{item} to remove: "))
+            remove_item(item, quantity)
+        elif choice == "3":
+            view_inventory()
+        elif choice == "4":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
+if __name__ == "__main__":
+ main()
